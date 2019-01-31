@@ -3,11 +3,11 @@ import "./style.css";
 
 function Charactercard(props) {
 
-    const { image, name, handleClick,id,clicked } = props
+    const { image, name, handleClick,id, } = props
     return (
 
 
-        <div onClick={() => handleClick (id,clicked)} className="character">
+        <div onClick={() => handleClick (id,)} className="character">
             <div className="images">
                 <img alt={name} src={image} />
             </div>

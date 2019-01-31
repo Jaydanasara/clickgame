@@ -10,47 +10,83 @@ class App extends Component {
     state = {
         Characters,
         score: 0,
-        topScore: 0
+        topScore: 0,
+        clicked: [],
+        message: ""
+    };
+
+
+    componentDidMount() {
+        this.setState({ Characters: this.arrayShuffle() });
+    }
+
+
+    arrayShuffle = () => {
+        let newPos,
+            temp;
+        const _characters = this.state.Characters;
+        for (let i = _characters.length - 1; i > 0; i--) {
+            newPos = Math.floor(Math.random() * (i + 1));
+            temp = _characters[i];
+            _characters[i] = _characters[newPos];
+            _characters[newPos] = temp;
+        }
+        return _characters;
 
     };
-  
 
+    handleClick = (id) => {
 
+        let clicked = this.state.clicked;
+        let score = this.state.score + 1;
+        let topScore = this.state.topScore;
+        let message = "";
 
+        const Characters = this.arrayShuffle();
 
-
-    handleClick = (id,clicked) => {
-        
-        if (clicked===false){
-            alert("you are correct");
-            this.setState({clicked: this.clicked = !this.clicked
-             });
+        if (clicked.includes(id)) {
+            score = 0;
+            message = "you clicked that already";
+            clicked=[];
         }
-         let score = this.state.score + 1;
-        let topScore = this.state.topScore;  
-        if (score > topScore) {
-            topScore = score;
-            this.setState({ score, topScore,});  
-        }
-       
-        else{
-            alert("you have clicked that already")
+        else  {
+            message = "you are correct"
+            clicked = [...this.state.clicked, id]
             
         }
-       
-    
-       
-        
+
+        if (score > topScore) {
+            topScore = score;
+            message = "you are correct"
+            clicked = [...this.state.clicked, id]
+            
+        }
+
+        if (score===12){
+            score=0;
+            message = "GAME OVER";
+            clicked=[];
+            
+        }
+
+        this.setState({ Characters, score, topScore, clicked , message })
+
+
+
+
+
+
+
     };
-        
+
 
     render() {
         return (
             <Wrapper>
                 <Title> Superhero Memory Game</Title>
-                <Points>Score: {this.state.score}</Points>
+                <Points>Score: {this.state.score}  <h2>{this.state.message}</h2></Points>
                 <TopScore>Top Score: {this.state.topScore}</TopScore>
-                
+
                 {this.state.Characters.map(character => (
 
                     <CharacterCard
@@ -58,7 +94,7 @@ class App extends Component {
                         id={character.id}
                         name={character.name}
                         image={character.image}
-                        clicked={character.clicked}
+
                     />
 
                 ))}

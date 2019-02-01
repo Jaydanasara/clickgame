@@ -9,7 +9,7 @@
     {
       "id": 2,
       "name": "Thor",
-      "image": "./Images/thor.jpg",
+      "image": "./Images/Thor.jpg",
       "clicked": false
     },
     {
@@ -36,7 +36,7 @@
     {
       "id": 6,
       "name": "Ultron",
-      "image": "./Images/Ultron.png",
+      "image": "./Images/ultron.png",
       "clicked": false
 
     },

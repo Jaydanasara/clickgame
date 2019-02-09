@@ -72,12 +72,31 @@ class App extends Component {
         this.setState({ Characters, score, topScore, clicked , message })
 
 
-
-
-
-
-
     };
+
+
+//     advanceLevels= () => {
+//         if (score<12)
+//         //let characters = this.state.characters
+//         //easy mode array and an additional array of the characters you will render when the player complete easy mode
+// //when the score is greater than 12, push/append the destructured hard array onto the characters array and then push it
+//     this.state.Characters.map(character => (
+                    
+
+//         <CharacterCard
+//             handleClick={this.handleClick}
+//             id={character.id}
+//             name={character.name}
+//             image={character.image}
+
+//         />
+
+//     ))}
+
+
+
+
+
 
 
     render() {
@@ -88,6 +107,7 @@ class App extends Component {
                 <TopScore>Top Score: {this.state.topScore}</TopScore>
 
                 {this.state.Characters.map(character => (
+                    
 
                     <CharacterCard
                         handleClick={this.handleClick}
